@@ -1,0 +1,16 @@
+.cart-wrap{
+    text-align: center;
+}
+.wrap{
+    width:70%;
+    display: flex;
+    align-items: left;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+.wrap h3{
+    color:#7f0505;
+}
+.margin{
+    margin: 10px 0px;
+}
