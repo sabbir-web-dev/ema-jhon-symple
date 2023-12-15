@@ -1,0 +1,29 @@
+.nav-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #232323;
+  color:#fff;
+  padding:5px 5%;
+}
+.logo{
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.nav-wrap ul{
+  display: flex;
+  gap: 25px;
+}
+.link{
+  text-decoration: none;
+  color:#fff;
+  font-weight: 500;
+  transition:.3s ease;
+}
+.link:Hover{
+  text-decoration:underline;
+  color:#f84c0d;
+}
+.active{
+  color:#f84c0d;
+}

@@ -3,11 +3,14 @@
     justify-content: center;
 }
 .product{
-    width:70%;
+    flex:400px;
     margin-left:10%;
     margin-right:5px;
     border-right:1px solid lightgray;
 }
 .cart{
-    width:20%;
+    flex:250px;
+}
+@media  (max-width:700px) {
+
 }
