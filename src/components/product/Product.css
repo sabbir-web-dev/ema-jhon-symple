@@ -3,13 +3,17 @@
 .single-product-wrap{
     display: flex;
     flex-wrap: wrap;
+    padding:5px;
     gap: 10px;
     margin-bottom:5px;
     border-bottom:1px solid lightgray;
-
+    border-left:1px solid lightgray;
 }
 .product-left{
     margin-right:10px;
+}
+.product-right{
+    margin-bottom:20px;
 }
 .product-right h4{
     color:blue;

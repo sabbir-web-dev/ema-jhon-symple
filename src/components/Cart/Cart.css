@@ -1,5 +1,7 @@
 .cart-wrap{
     text-align: center;
+    position:fixed;
+    top:50px;
 }
 .wrap{
     width:70%;

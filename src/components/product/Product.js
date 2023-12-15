@@ -2,11 +2,13 @@ import React from "react";
 import "./Product.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { useShopContext } from "../../Hook/useShopContext";
 
 const Product = (props) => {
-  const { name, img, seller, price, stock } = props.product;
-  
+  const {addProduct} = useShopContext();
 
+  const { name, img, seller, price, stock,key} = props.product;
+  
   return (
     <div className="single-product-wrap">
       <div className="product-left">
@@ -24,7 +26,7 @@ const Product = (props) => {
         <p>
           <small>Only {stock} leftin stock - Oder soon</small>
         </p>
-        <button className="btn" onClick={()=>{props.btnHendeler(props.product)}} >
+        <button className="btn" onClick={addProduct(key)} >
           <FontAwesomeIcon icon={faShoppingCart} /> add to cart
         </button>
       </div>

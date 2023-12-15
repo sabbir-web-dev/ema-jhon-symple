@@ -6,6 +6,20 @@
   color:#fff;
   padding:5px 5%;
 }
+.nav-fixt{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #232323e9;
+  color:#fff;
+  padding:5px 5%;
+  position:fixed;
+  top: 0;
+  left:0;
+  right: 0;
+  transition:.3s ease;
+}
+
 .logo{
   font-size: 1.6rem;
   font-weight: 600;
@@ -13,6 +27,9 @@
 .nav-wrap ul{
   display: flex;
   gap: 25px;
+}
+.gap{
+  padding:0px 12px
 }
 .link{
   text-decoration: none;
