@@ -7,10 +7,10 @@ const Shop = () => {
     <div>
       <div className="product-wrap">
         <div className="product">
-          
+
         </div>
         <div className="cart">
-            {/* <Cart cart={cart}></Cart> */}
+            
         </div>
       </div>
     </div>
