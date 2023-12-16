@@ -6,7 +6,6 @@ import { useShopContext } from "../../Hook/useShopContext";
 
 const Product = (props) => {
   const {addProduct} = useShopContext();
-
   const { name, img, seller, price, stock,key} = props.product;
   
   return (
@@ -26,7 +25,7 @@ const Product = (props) => {
         <p>
           <small>Only {stock} leftin stock - Oder soon</small>
         </p>
-        <button className="btn" onClick={addProduct(key)} >
+        <button className="btn" onClick={()=> addProduct(key)} >
           <FontAwesomeIcon icon={faShoppingCart} /> add to cart
         </button>
       </div>

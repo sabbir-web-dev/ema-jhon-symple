@@ -5,17 +5,18 @@ const data = Data;
 const shopData = data
 
  export const initialState = {
-  products: shopData,
+  products:shopData,
   addProduct: []
  };
 
 
 export const reducer = (state,action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case "ADD_PRODUCT":
+      const filterProduct = shopData.filter(product => product.key === action.payload);
       return{
         ...state,
-        addProduct : [...state.addProduct,action.payload]
+        addProduct : [...state.addProduct,filterProduct[0]]
       };
   
     default:
