@@ -3,18 +3,31 @@ import "./Product.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useShopContext } from "../../Hook/useShopContext";
+import { Link} from "react-router-dom";
 
 const Product = (props) => {
-  const {addProduct} = useShopContext();
-  const { name, img, seller, price, stock,key} = props.product;
-  
+  const { addProduct,removeProduct,products } = useShopContext();
+  const { name, img, seller, price, stock, key,quantity} = props.product;
+
+  const hendleClick = () => {
+   const selectProduct= products.filter(product =>product.key === key);
+   selectProduct[0].quantity = selectProduct[0].quantity + 1
+    console.log(quantity)
+    addProduct(key);
+  }
+
+
   return (
     <div className="single-product-wrap">
       <div className="product-left">
         <img src={img} alt="" />
       </div>
       <div className="product-right">
-        <h4 className="product-name">{name}</h4>
+        <div className="title">
+          <Link to={`/product/${key}`}>
+            <h4 className="product-name">{name}</h4>
+          </Link>
+        </div>
         <br />
         <p>
           <small>by:{seller}</small>
@@ -25,9 +38,21 @@ const Product = (props) => {
         <p>
           <small>Only {stock} leftin stock - Oder soon</small>
         </p>
-        <button className="btn" onClick={()=> addProduct(key)} >
-          <FontAwesomeIcon icon={faShoppingCart} /> add to cart
-        </button>
+        {props.addShowCard ? (
+          <button
+            className="btn"
+            onClick={hendleClick}
+          >
+            <FontAwesomeIcon icon={faShoppingCart} /> add to cart
+          </button>
+        ) : (
+          <button
+            className="btn"
+            onClick={() => removeProduct(key)}
+          >
+            Remove
+          </button>
+        )}
       </div>
     </div>
   );

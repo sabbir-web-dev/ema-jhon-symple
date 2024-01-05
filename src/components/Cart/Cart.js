@@ -1,53 +1,99 @@
-import React, { useState } from 'react';
-import './Cart.css'
-import { useShopContext } from '../../Hook/useShopContext';
-
+import React from "react";
+import "./Cart.css";
+import { useShopContext } from "../../Hook/useShopContext";
+import { Link } from "react-router-dom";
 const Cart = () => {
-    const {selectProduct} = useShopContext();
-    
-    const [items,setItems] = useState(0);
-    const [totalText,setTotalText] = useState(0);
-    const [shippingCost,setShippingConst] = useState(0);
-    const [total,setTotal] = useState(0);
+  const { selectProduct } = useShopContext();
+  let total = 0;
+  let tax = 0;
 
-    selectProduct.map(product => {
-        console.log(product)
-        const {price,shipping} = product;
+  let items = 0;
 
-        let totalItem = items + price;
-        console.log(totalItem)
-        setItems(totalItem)
-    } )
-    
+  selectProduct &&
+    selectProduct.map((product) => {
+      const { price, quantity } = product;
+      return  items = price * quantity
+    });
 
+  let cost = selectProduct.reduce(
+    (cost, product) => cost + product.shipping,
+    0
+  );
 
-    return (
-        <div className='cart-wrap'>
-            <h3>Order Summary</h3>
-            <p className=' margin'>Items ordered: {selectProduct && selectProduct.length}</p>
+  if (items > 20 || total > 20) {
+    cost = 0;
+  }
+  if (items > 10 && total > 20) {
+    cost = 4.99;
+  }
+  if (items > 0 && total > 20) {
+    cost = 8.99;
+  }
 
-            <div className="wrap">
-                <p><small>Items:</small></p>
-                <p><small>$</small></p>
-            </div>
-            <div className="wrap">
-                <p><small>Total tax:</small></p>
-                <p><small>$</small></p>
-            </div>
-            <div className="wrap">
-                <p><small>Shipping & handing:</small></p>
-                <p><small>$</small></p>
-            </div>
+  if (items > 0) {
+    tax = (2 / 100) * items;
+  }
 
-            <div className="wrap">
-                <h3>Order Total:</h3>
-                <h3></h3>
-            </div>
+  total = items + tax + cost;
 
+  const toFixed = (num) => {
+    return num.toFixed(2);
+  };
 
-        </div>
-    );
+  return (
+    <div className="cart-wrap">
+      <div className="card-headding">
+        <h3>Order Summary</h3>
+        <p className=" margin">
+          Items ordered: {selectProduct && selectProduct.length}
+        </p>
+      </div>
+      <div className="card-content-wrap">
+        <p>
+          <small>Items:</small>
+        </p>
+        <p>
+          <small>
+            $<strong>{toFixed(items)}</strong>
+          </small>
+        </p>
+      </div>
+      <div className="card-content-wrap">
+        <p>
+          <small>Total tax:</small>
+        </p>
+        <p>
+          <small>
+            $<strong>{toFixed(tax)}</strong>
+          </small>
+        </p>
+      </div>
+      <div className="card-content-wrap">
+        <p>
+          <small>Shipping & handing:</small>
+        </p>
+        <p>
+          <small>
+            $<strong>{toFixed(cost)}</strong>
+          </small>
+        </p>
+      </div>
 
+      <div className="card-content-wrap">
+        <h3>Order Total:</h3>
+        <h3>
+          $<strong>{toFixed(total)}</strong>
+        </h3>
+      </div>
+
+      <div className="btn-center">
+        <Link to="/revew" state={{ selectProduct, addShowCard: false }}>
+          {" "}
+          <button className="btn">Revew Order</button>
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default Cart;
