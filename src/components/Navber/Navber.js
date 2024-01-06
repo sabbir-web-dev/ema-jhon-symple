@@ -32,6 +32,7 @@ function Navber() {
       setUser(false)
 
   };
+  console.log(user)
   return (
     <nav className={`nav-wrap ${navPosition ? "nav-fixt" : " "}`}>
       <div className="logo">Ema-joon</div>
@@ -51,7 +52,7 @@ function Navber() {
             <img
               onClick={hendleSignOut}
               className="img-wrap"
-              title={user.name}
+              title={user.name ? user.name : " "}
               src={user.img}
               alt=""
             />

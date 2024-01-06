@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useShopContext } from "../Hook/useShopContext";
 import Product from "../components/product/Product";
 
@@ -6,8 +6,11 @@ import "./Shop.css";
 import Cart from "../components/Cart/Cart";
 
 const Shop = () => {
-  const { products } = useShopContext();
-
+  const { products,setOrder } = useShopContext();
+  useEffect(() => {
+    setOrder(false)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     <div className="shop">
       <div className="product-wrap">
@@ -19,7 +22,7 @@ const Shop = () => {
         </div>
         <div className="cart">
           <div className="card-w">
-            <Cart />
+            <Cart  />
           </div>
         </div>
       </div>

@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Error() {
   return (
-    <div>
-      <h1>PAGE NOT FOUND</h1>
+    <div className="error-page">
+        <h1>404</h1>
+        <h5>Page Not Found</h5>
+        <Link className="login-btn" to="/">
+          Backe To Home
+        </Link>
     </div>
-  )
+  );
 }
 
-export default Error
+export default Error;

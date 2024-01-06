@@ -12,6 +12,7 @@ const ShopProvider = ({children}) => {
     products : state.products,
     user:state.user,
     selectProduct: state.selectProduct,
+    order:state.order,
     addProduct:(product) => {
       dispatch({type:"ADD_PRODUCT",payload:product})
     },
@@ -20,6 +21,9 @@ const ShopProvider = ({children}) => {
     },
     setUser:(user) => {
       dispatch({type:"ADD_USER",payload:user})
+    },
+    setOrder:(order) => {
+      dispatch({type: "ADD_ORDER",payload:order})
     }
   }
 

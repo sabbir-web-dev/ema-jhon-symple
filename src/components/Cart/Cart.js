@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import { useShopContext } from "../../Hook/useShopContext";
 import { Link } from "react-router-dom";
 const Cart = () => {
-  const { selectProduct } = useShopContext();
+  const { selectProduct, order } = useShopContext();
   let total = 0;
   let tax = 0;
-
   let items = 0;
 
   selectProduct &&
     selectProduct.map((product) => {
       const { price, quantity } = product;
-      return  items = price * quantity
+      return (items = price * quantity);
     });
 
   let cost = selectProduct.reduce(
@@ -39,6 +38,14 @@ const Cart = () => {
   const toFixed = (num) => {
     return num.toFixed(2);
   };
+  const [cake, setCheack] = useState("");
+  useEffect(()=> {
+    if (total === 0) {
+      setCheack(false);
+    } else {
+      setCheack(true);
+    }
+  },[total])
 
   return (
     <div className="cart-wrap">
@@ -87,10 +94,19 @@ const Cart = () => {
       </div>
 
       <div className="btn-center">
-        <Link to="/revew" state={{ selectProduct, addShowCard: false }}>
-          {" "}
-          <button className="btn">Revew Order</button>
-        </Link>
+        {order ? (
+          <Link to="/shep-ment">
+            <button className="btn">Please Order</button>
+          </Link>
+        ) : cake ? (
+          <Link to="/revew" state={{ selectProduct, addShowCard: false }}>
+            <button className="btn">Revew Order</button>
+          </Link>
+        ) : (
+          <Link>
+            <button className="btn">Revew Order</button>
+          </Link>
+        )}
       </div>
     </div>
   );

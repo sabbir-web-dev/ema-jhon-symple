@@ -5,14 +5,14 @@ import { auth, facebookProvider, googleProvider } from "../Firebase/Firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import useLoginFormik from "../formik/Formik";
 import { useShopContext } from "../Hook/useShopContext";
-import { initializeApp } from "firebase/app";
-import firebaseConfig from "../Firebase/firebase.config";
+import { useNavigate } from "react-router";
 
-initializeApp(firebaseConfig);
 
 function Login() {
   const { setUser } = useShopContext();
   const [signUp,setSignUp ] = useState(false);
+
+  const navigate = useNavigate()
 
   const handleSubmit = (values) => {
     const {email,password,name} = values
@@ -24,12 +24,14 @@ function Login() {
           displayName: name
         })
         setUser(true)
+        navigate(-1)
       })
       .catch(err => console.log(err.message))
     }else{
       signInWithEmailAndPassword(auth,email,password)
       .then(res => {
         setUser(true)
+        navigate(-1)
       })
       .catch(err => console.log(err.message))
     }
@@ -41,6 +43,7 @@ function Login() {
       .then((res) => {
         console.log(res.user);
         setUser(res.user);
+        navigate(-1)
       })
       .catch((error) => {
         console.log(error.message);
@@ -49,7 +52,10 @@ function Login() {
 
   const signInFacebook = () => {
     signInWithPopup(auth, facebookProvider)
-      .then((res) => console.log(res))
+      .then((res) => {
+        setUser(res.user)
+        navigate(-1)
+      })
       .catch((err) => console.log(err.message));
   };
 

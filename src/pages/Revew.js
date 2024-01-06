@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useShopContext } from "../Hook/useShopContext";
 import Product from "../components/product/Product";
 import Cart from "./../components/Cart/Cart";
 
 function Revew() {
-  const { selectProduct } = useShopContext();
+  const { selectProduct,setOrder } = useShopContext();
+  useEffect(() => {
+    setOrder(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     <div>
       <div className="product-wrap">

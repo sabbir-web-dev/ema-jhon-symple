@@ -12,9 +12,8 @@ export const initialState = {
     email: "",
     img: "",
     signIn: false,
-    login:false,
-    signUp:false
   },
+  order: false
 };
 
 export const reducer = (state, action) => {
@@ -40,16 +39,26 @@ export const reducer = (state, action) => {
     case "ADD_USER":
       const user = auth.currentUser
       const { displayName, email, photoURL } = user;
+      let userName = displayName && displayName;
+      let userEmail = email && email;
+      const userPhoto = photoURL && photoURL
       return {
         ...state,
         user: {
           ...state.user,
-          name: displayName,
-          email: email,
-          img: photoURL,
+          name: userName,
+          email: userEmail,
+          img: userPhoto,
           signIn: action.payload,
         },
       };
+
+    case "ADD_ORDER" : 
+
+    return{
+      ...state,
+      order: action.payload
+    }
 
     default:
       return state;
